@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+    }
+    nav {
+      background-color: #111;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: #4fc3f7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section-title {
+      color: #f06292;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .project {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      margin: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .project h2 {
+      color: #f06292;
+    }
+    .project img {
+      width: 60px;
+      height: 60px;
+    }
+    .project-content {
+      flex: 1;
+      margin-right: 20px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2rem 0;
+      background: #111;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode .project {
+      background: #ffe6f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section>
+    <h1 class="section-title">Graduate Projects</h1>
+    <div class="project">
+      <div class="project-content">
+        <h2>Pic2Plate – AI-Powered Recipe Recommendation System</h2>
+        <p>Built a cross-platform mobile app using Flutter to suggest personalized recipes from fridge images. Integrated Amazon Rekognition for ingredient detection and RapidAPI for real-time recipe retrieval. Backend logic enables smart image parsing and an intuitive UI to reduce food waste.</p>
+        <p><strong>Skills:</strong> Flutter, Dart, REST APIs, Amazon Rekognition, UI/UX, Mobile Development</p>
+      </div>
+      <img src="images/pic2plate.png" alt="Pic2Plate" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>System Performance Monitor</h2>
+        <p>Developed a UNIX-style performance monitor using C to track CPU, memory, and I/O stats. Parsed system files like /proc/stat to analyze system load, and extended the tool to track disk I/O.</p>
+        <p><strong>Skills:</strong> C, Resource Monitoring, Signal Handling, Performance Engineering</p>
+      </div>
+      <img src="images/sysmon.png" alt="System Monitor" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Key/Value File System</h2>
+        <p>Created a custom file system to interface directly with raw block devices. Implemented caching, indexing, and log-structured storage to optimize performance and persistence.</p>
+        <p><strong>Skills:</strong> File Systems, Data Indexing, Block Emulation, C</p>
+      </div>
+      <img src="images/filesystem.png" alt="File System" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Storage Class Memory Manager</h2>
+        <p>Designed a memory management system using file-backed storage for persistent allocation. Built an AVL-backed shell for real-time access and added garbage collection and deallocation routines.</p>
+        <p><strong>Skills:</strong> AVL Trees, Memory Allocation, Persistent Storage, C</p>
+      </div>
+      <img src="images/memorychip.png" alt="Memory Manager" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>JIT Compiled Expression Evaluator</h2>
+        <p>Developed a JIT compiler in C to parse user expressions, generate and compile equivalent C code, and execute machine instructions dynamically. Added sigmoid transformation support.</p>
+        <p><strong>Skills:</strong> JIT, Dynamic Compilation, Abstract Syntax Tree, C</p>
+      </div>
+      <img src="images/jit.png" alt="JIT Compiler" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Userspace Dynamic Thread Scheduler</h2>
+        <p>Built a POSIX-style thread scheduler in C supporting thread creation, yielding, execution, and context switching. Demonstrated deep CPU scheduling knowledge.</p>
+        <p><strong>Skills:</strong> POSIX Threads, Scheduling, Concurrency, C</p>
+      </div>
+      <img src="images/memorychip.png" alt="Thread Scheduler" />
+    </div>
+  </section>
+
+  <section>
+    <h1 class="section-title">Undergraduate Projects</h1>
+    <div class="project">
+      <div class="project-content">
+        <h2>Emotional Stress Recognition using EEG Signals</h2>
+        <p>Built MATLAB models to classify emotional stress from EEG data. Explored applications in mental health diagnosis and therapy improvement.</p>
+        <p><strong>Skills:</strong> EEG, MATLAB, Human Computer Interaction, ML, Signal Processing</p>
+      </div>
+      <img src="images/eeg.png" alt="EEG" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>E-commerce Website</h2>
+        <p>Responsive shopping portal with login, cart, and checkout. Frontend in HTML/CSS/JS and backend in PHP. Enabled COD and online payments.</p>
+        <p><strong>Skills:</strong> HTML, CSS, JS, PHP</p>
+      </div>
+      <img src="images/ecommerce.png" alt="E-commerce" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Social Distance Monitoring Device</h2>
+        <p>Built a device using ultrasonic sensors to measure human proximity and body temperature. Triggered alarms when distance &lt; 3 feet.</p>
+        <p><strong>Skills:</strong> Embedded C, Arduino, Sensor Systems</p>
+      </div>
+      <img src="images/distance.png" alt="Distance Monitor" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Ludo Game Simulation</h2>
+        <p>Designed a 2-player LUDO game using OpenGL and C. Fully controllable with keyboard/mouse input. Compiled and debugged in Code::Blocks.</p>
+        <p><strong>Skills:</strong> OpenGL, C, Game Development</p>
+      </div>
+      <img src="images/ludo.png" alt="Ludo Game" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Book-Store Management</h2>
+        <p>Interactive Java/PHP-based bookstore database. Admin/user separation with login functionality and CRUD operations.</p>
+        <p><strong>Skills:</strong> Java, PHP, MySQL</p>
+      </div>
+      <img src="images/bookstore.png" alt="Bookstore" />
+    </div>
+    <div class="project">
+      <div class="project-content">
+        <h2>Obstacle Avoiding Robot</h2>
+        <p>Ultrasonic sensor-guided robot that detects and avoids obstacles. Built using Arduino IDE and embedded C with SR04 sensor.</p>
+        <p><strong>Skills:</strong> Arduino IDE, Embedded C, Robotics</p>
+      </div>
+      <img src="images/obstacle.png" alt="Obstacle Robot" />
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    }
+
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadParticles);
+  </script>
+</body>
+</html>

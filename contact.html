@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #0f1117;
+      color: #f8f9fa;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f1117;
+      padding: 1rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: white;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    h1 {
+      color: #ff69b4;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    a {
+      color: #ff69b4;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .button {
+      background: #ff69b4;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: #11151c;
+      color: #aaa;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode a {
+      color: #ff69b4;
+    }
+    body.light-mode .button {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section>
+    <h1>Let's Connect!</h1>
+    <p>Got a project, a fun opportunity, or just want to say hi? I'm just one click away ✨</p>
+    <p>Send me a virtual hi-five at <a href="mailto:asrikan4@uci.edu">asrikan4@uci.edu</a></p>
+    <p>Or come stalk me (professionally of course) on <a href="https://www.linkedin.com/in/akshatha-srikantha" target="_blank">LinkedIn 🧳</a></p>
+    <a class="button" href="AKSHATHA_SRIKANTHA RESUME.pdf" download>📄 Download My Resume</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    }
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+    document.addEventListener("DOMContentLoaded", loadParticles);
+  </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f1117;
+      color: #f8f9fa;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f1117;
+      padding: 1rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: white;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #ff69b4;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #11151c;
+      color: #aaa;
+    }
+    .toggle-mode {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: #38bdf8;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode h1, body.light-mode h2 {
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <button class="toggle-mode" onclick="toggleMode()">Go Light!</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section>
+    <h1>About Me</h1>
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <img src="MyPhoto_White.JPG" alt="Akshatha Srikantha" style="width: 220px; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); animation: float 3s ease-in-out infinite;">
+    </div>
+    <p>Hi there! I'm Akshatha Srikantha — a Computer Science graduate student at UC Irvine and a former Data Engineer at IBM with nearly 3 years of experience designing scalable data pipelines and optimizing real-time analytics across large-scale enterprise systems.</p>
+    <p>I'm passionate about all things data-driven. My technical interests revolve around machine learning, AI, data engineering, and human-centered computing. At UCI, I’ve expanded my expertise into interdisciplinary research that bridges neuroscience and computation, contributing to projects that analyze neural data and model cognitive function.</p>
+    <p>I enjoy turning complex problems into clear, impactful solutions — whether it’s cleaning EEG signals, building ML models, or creating elegant pipelines that drive performance and insight. I'm always on the lookout for projects where curiosity and tech can come together to build something that matters.</p>
+  </section>
+
+  <section>
+    <h2>Beyond the Code</h2>
+    <p>When I'm not in front of a screen debugging code or exploring data, you’ll find me flipping pages of a good fiction novel, painting with acrylics, or planning my next adventure trip. I love scuba diving and have a soft spot for animals. My dream? To someday have more pets than furniture and books in my house — seriously! 🐾</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    let isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+      document.querySelector('.toggle-mode').textContent = 'See my dark side!';
+    }
+
+    function toggleMode() {
+      const body = document.body;
+      const button = document.querySelector('.toggle-mode');
+      isLight = !isLight;
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      body.classList.toggle('light-mode');
+      button.textContent = isLight ? 'See my dark side!' : 'Go Light!';
+      loadParticles();
+    }
+
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadParticles);
+  </script>
+</body>
+</html>

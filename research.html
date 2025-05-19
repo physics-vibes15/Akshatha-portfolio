@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f1117;
+      color: #f8f9fa;
+    }
+    nav {
+      background-color: #0f1117;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 10;
+      position: relative;
+    }
+    nav a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: white;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    h1 {
+      text-align: center;
+      color: #f06292;
+      margin-top: 2rem;
+    }
+    .research-entry {
+      background: #1a1a1a;
+      margin: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .research-entry h2 {
+      color: #f06292;
+    }
+    .research-entry a {
+      color: #4fc3f7;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: #11151c;
+      color: #aaa;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode .research-entry {
+      background-color: #ffe6f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <h1>Research</h1>
+
+  <div class="research-entry">
+    <h2>Alzheimer's Disease Research — Kei Igarashi Lab, UC Irvine</h2>
+    <p>Contributing to neuroscience research focused on understanding neural circuit dynamics in Alzheimer’s disease. Involved in behavioral data collection, preprocessing and analyzing neural signals from multi-electrode recordings using MATLAB and Python. Leveraged Neuralynx for hippocampal-EC data interpretation under associative memory studies.</p>
+    <p><strong>Tools:</strong> MATLAB, Python, Neuralynx, Signal Processing<br>
+    <strong>Lab:</strong> <a href="https://www.igarashilab.org/" target="_blank">Kei Igarashi Lab</a></p>
+  </div>
+
+  <div class="research-entry">
+    <h2>IEEE Research Project — Emotional Stress Recognition using EEG Signals</h2>
+    <p>Designed a machine learning pipeline to classify emotional states using EEG signal datasets. Implemented signal filtering, feature extraction and emotion labeling techniques to identify stress responses. Contributed to paper writing and presentation. Published in IEEE Xplore.</p>
+    <p><strong>Skills:</strong> EEG, ML, MATLAB, Research Methodology<br>
+    <strong>Publication:</strong> <a href="#">IEEE Xplore Link</a> | <a href="#">Google Scholar</a></p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    }
+
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadParticles);
+  </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #0f1117;
+      color: #f8f9fa;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f1117;
+      padding: 1rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: white;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #ff69b4;
+      text-align: center;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 260px;
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-color: #1c1f26;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .flip-card-front {
+      background-color: #1c1f26;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+      font-size: 0.95rem;
+      color: #eee;
+      background-color: #1c1f26;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #11151c;
+      color: #aaa;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode .flip-card-front,
+    body.light-mode .flip-card-back {
+      background-color: #ffe6f0;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section>
+    <h1>Skills</h1>
+    <div class="skills-grid">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Machine Learning</h3>
+            <p>SVM, GA, Wavelets, ICA</p>
+          </div>
+          <div class="flip-card-back">
+            Built and deployed ML models for EEG classification, emotional stress recognition, and food recommendation using Amazon Rekognition and SVM.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Data Structures & Algorithms</h3>
+            <p>AVL Trees, Scheduling, JIT Parsing</p>
+          </div>
+          <div class="flip-card-back">
+            Proficient in C and C++, implemented AVL trees, memory managers, schedulers, and evaluated performance for compiled expressions.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JS, PHP</p>
+          </div>
+          <div class="flip-card-back">
+            Designed interactive UIs using HTML, CSS, JS; developed e-commerce platforms and managed full stack deployment with PHP.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Flutter & Mobile Dev</h3>
+            <p>Flutter, Dart, REST APIs</p>
+          </div>
+          <div class="flip-card-back">
+            Created mobile applications like Pic2Plate integrating image-based AI systems for practical, real-world utility.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Python & MATLAB</h3>
+            <p>Signal Processing, Analysis</p>
+          </div>
+          <div class="flip-card-back">
+            Used extensively for neuroscience signal processing (EEG, calcium imaging), data preprocessing, and time-series analysis.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Soft Skills & Leadership</h3>
+            <p>Public Speaking, Event Management</p>
+          </div>
+          <div class="flip-card-back">
+            Emceed multiple academic events, coordinated workshops, led outreach programs, and built strong team rapport through effective communication and leadership.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    }
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+    document.addEventListener("DOMContentLoaded", loadParticles);
+  </script>
+</body>
+</html>

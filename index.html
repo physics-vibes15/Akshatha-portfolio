@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Akshatha Srikantha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    nav {
+      background-color: #111;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: #4fc3f7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .toggle-mode {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: #38bdf8;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 101;
+    }
+    .container {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .container img {
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 2rem;
+    }
+    .container h1 {
+      color: #f06292;
+      margin-bottom: 1rem;
+    }
+    .container p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+    }
+    section {
+      text-align: center;
+      padding: 2rem;
+    }
+    section a {
+      color: #4fc3f7;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: #111;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000;
+    }
+    body.light-mode nav {
+      background-color: #f3f3f3;
+    }
+    body.light-mode nav a {
+      color: #ff69b4;
+    }
+    body.light-mode footer {
+      background-color: #f3f3f3;
+      color: #333;
+    }
+    body.light-mode section a {
+      color: #ff69b4;
+    }
+    body.light-mode .toggle-mode {
+      background: #ff69b4;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <button class="toggle-mode" onclick="toggleMode()">Go Light!</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <img src="MyPhoto.JPG" alt="Akshatha Srikantha">
+    <h1>Hi, I'm Akshatha 👋</h1>
+    <p>I'm a Computer Science graduate student at UC Irvine and a former Data Engineer at IBM. I love building smart systems, decoding signals, and combining neuroscience with AI. Welcome to my digital space where projects meet purpose!</p>
+  </div>
+
+  <section>
+    <p>👀 Curious who you're dealing with? <a href="about.html">Head to the About page</a> to learn more about me and my quirks!</p>
+  </section>
+  <section>
+    <p>🛠️ I build cool stuff! <a href="projects.html">Check out my projects</a> if you're into smart systems and tech magic.</p>
+  </section>
+  <section>
+    <p>🧠 Oh, and I do science too! <a href="research.html">Explore my research</a> to see what my brain works on when not coding.</p>
+  </section>
+  <section>
+    <p>📚 Want to know what I know? <a href="skills.html">Peek at my skills</a> — I promise it’s more than Ctrl+C, Ctrl+V!</p>
+  </section>
+  <section>
+    <p>📬 Want to chat or collab? <a href="contact.html">Reach out to me</a> — I don’t bite, I debug 😄</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    let isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+      document.querySelector('.toggle-mode').textContent = 'See my dark side!';
+    }
+
+    function toggleMode() {
+      const body = document.body;
+      const button = document.querySelector('.toggle-mode');
+      isLight = !isLight;
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      body.classList.toggle('light-mode');
+      button.textContent = isLight ? 'See my dark side!' : 'Go Light!';
+      loadParticles();
+    }
+
+    function loadParticles() {
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      const config = isLight ? {
+        particles: {
+          number: { value: 40 },
+          shape: {
+            type: "image",
+            image: {
+              src: "Blossom.png",
+              width: 20,
+              height: 20
+            }
+          },
+          opacity: { value: 1 },
+          size: { value: 10 },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom"
+          }
+        }
+      } : {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#38bdf8" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2
+          }
+        }
+      };
+      particlesJS("particles-js", config);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadParticles);
+  </script>
+</body>
+</html>
