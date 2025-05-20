@@ -139,7 +139,11 @@
   </section>
 
   <footer>
+    <div style="text-align: center; margin-top: 2rem;">
+      <p id="visitor-count" style="color: #f06292; font-weight: bold;"></p>
+    </div>    
     <p>&copy; 2025 Akshatha Srikantha</p>
+    <p>This website anonymously logs city/country-level data for visitor stats. No personal data is collected.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -206,8 +210,75 @@
       };
       particlesJS("particles-js", config);
     }
+    async function logVisitor() {
+      try {
+        const res = await fetch("https://ipapi.co/json");
+        const data = await res.json();
+        const payload = {
+          ip: data.ip,
+          city: data.city,
+          region: data.region,
+          country: data.country_name,
+          org: data.org,
+          timestamp: new Date().toISOString()
+        };
+        await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        console.error("Visitor logging failed:", error);
+      }
+    }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      loadParticles();
+      logVisitor();
+    });
     document.addEventListener('DOMContentLoaded', loadParticles);
   </script>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
+
+<script>
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBuBVZVip1GnXDyUdiSBUahYpOdfo6R4q8",
+  authDomain: "akshatha-portfolio.firebaseapp.com",
+  databaseURL: "https://akshatha-portfolio-default-rtdb.firebaseio.com",
+  projectId: "akshatha-portfolio",
+  storageBucket: "akshatha-portfolio.firebasestorage.app",
+  messagingSenderId: "242005384483",
+  appId: "1:242005384483:web:5acf79978cc324d9234096",
+  measurementId: "G-V5NV1GRMD1"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+  // Visitor counter
+  const counterRef = database.ref("visitorCount");
+  counterRef.transaction((current) => {
+    return (current || 0) + 1;
+  }).then(snapshot => {
+    const count = snapshot.snapshot.val();
+    const countBox = document.createElement("p");
+    countBox.textContent = `👋 You're visitor #${count}`;
+    countBox.style.color = "#f06292";
+    countBox.style.fontWeight = "bold";
+    countBox.style.textAlign = "center";
+    document.body.appendChild(countBox);
+  });
+</script>
 </body>
 </html>
