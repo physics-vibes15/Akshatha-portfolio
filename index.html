@@ -231,7 +231,8 @@
 
         const result = await response.json();
         if (result && result.count) {
-          document.getElementById("visitor-count-display").textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
+          const display = document.getElementById("visitor-count-display");
+          display.textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
         }
       } catch (error) {
         console.error("Visitor logging failed:", error);
