@@ -141,7 +141,8 @@
   <footer>
     <div style="text-align: center; margin-top: 2rem;">
       <p id="visitor-count" style="color: #f06292; font-weight: bold;"></p>
-    </div>    
+    </div>  
+    <p id="visitor-count-display"></p>  
     <p>&copy; 2025 Akshatha Srikantha</p>
     <p>This website anonymously logs city/country-level data for visitor stats. No personal data is collected.</p>
   </footer>
@@ -222,11 +223,16 @@
           org: data.org,
           timestamp: new Date().toISOString()
         };
-        await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
+        const response = await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
+
+        const result = await response.json();
+        if (result && result.count) {
+          document.getElementById("visitor-count-display").textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
+        }
       } catch (error) {
         console.error("Visitor logging failed:", error);
       }
@@ -236,7 +242,6 @@
       loadParticles();
       logVisitor();
     });
-    document.addEventListener('DOMContentLoaded', loadParticles);
   </script>
   <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
