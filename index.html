@@ -11,9 +11,6 @@
       font-family: 'Roboto', sans-serif;
       background-color: #0d0d0d;
       color: #fff;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
     }
     nav {
       background-color: #111;
@@ -26,19 +23,6 @@
       color: #4fc3f7;
       text-decoration: none;
       font-weight: bold;
-    }
-    .toggle-mode {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background: #38bdf8;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 101;
     }
     .container {
       text-align: center;
@@ -72,6 +56,13 @@
       text-align: center;
       padding: 2rem 0;
       background: #111;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    #visitor-count-display {
+      color: #f06292;
+      font-weight: bold;
+      margin-top: 1rem;
     }
     #particles-js {
       position: fixed;
@@ -95,18 +86,10 @@
       background-color: #f3f3f3;
       color: #333;
     }
-    body.light-mode section a {
-      color: #ff69b4;
-    }
-    body.light-mode .toggle-mode {
-      background: #ff69b4;
-      color: #000;
-    }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
-  <button class="toggle-mode" onclick="toggleMode()">Fancy some Cherry Blossoms?</button>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -140,27 +123,14 @@
 
   <footer>
     <p id="visitor-count-display">Loading visitor count...</p>
-  <p>&copy; 2025 Akshatha Srikantha</p>
-  <p>This website anonymously logs city/country-level data for visitor stats. No personal data is collected.</p>
-</footer>
+    <p>&copy; 2025 Akshatha Srikantha</p>
+    <p>This website anonymously logs city/country-level data for visitor stats. No personal data is collected.</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    let isLight = localStorage.getItem('theme') === 'light';
-    if (isLight) {
-      document.body.classList.add('light-mode');
-      document.querySelector('.toggle-mode').textContent = 'More of a Tech Geek?';
-    }
-
-    function toggleMode() {
-      const body = document.body;
-      const button = document.querySelector('.toggle-mode');
-      isLight = !isLight;
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      body.classList.toggle('light-mode');
-      button.textContent = isLight ? 'More of a Tech Geek..huh?' : 'Fancy some Cherry Blossoms?';
-      loadParticles();
-    }
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) document.body.classList.add('light-mode');
 
     function loadParticles() {
       if (window.pJSDom && window.pJSDom.length > 0) {
@@ -208,40 +178,7 @@
       };
       particlesJS("particles-js", config);
     }
-    async function logVisitor() {
-      try {
-        const res = await fetch("https://ipapi.co/json");
-        const data = await res.json();
-        const payload = {
-          ip: data.ip,
-          city: data.city,
-          region: data.region,
-          country: data.country_name,
-          org: data.org,
-          timestamp: new Date().toISOString()
-        };
-        const response = await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
 
-        const result = await response.json();
-        if (result && result.count) {
-          const display = document.getElementById("visitor-count-display");
-          display.textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
-        }
-      } catch (error) {
-        console.error("Visitor logging failed:", error);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      loadParticles();
-      logVisitorAndShowCount();
-    });
-  </script>
-  <script>
     async function logVisitorAndShowCount() {
       try {
         const res = await fetch("https://ipapi.co/json");
@@ -254,28 +191,27 @@
           org: data.org,
           timestamp: new Date().toISOString()
         };
-  
+
         const response = await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-  
+
         const result = await response.json();
         if (result && result.count) {
-          const display = document.getElementById("visitor-count-display");
-          display.textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
+          document.getElementById("visitor-count-display").textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
         }
       } catch (error) {
         console.error("Visitor logging failed:", error);
         document.getElementById("visitor-count-display").textContent = "Welcome! Visitor count is currently unavailable.";
       }
     }
-  
+
     document.addEventListener("DOMContentLoaded", () => {
       loadParticles();
       logVisitorAndShowCount();
     });
-</script>
+  </script>
 </body>
 </html>
