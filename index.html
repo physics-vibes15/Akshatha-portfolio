@@ -231,7 +231,7 @@
         .then(result => {
           const count = result.snapshot.val();
           const display = document.getElementById("visitor-count-display");
-          display.textContent = `Hi! You are visitor #${count}. Thank you for stopping by to learn about me 🙂`;
+          display.textContent = `Hi! You are visitor #${count}. Thank you for stopping by to learn about me <3`;
         })
         .catch(error => {
           console.error("Failed to update visitor count:", error);
