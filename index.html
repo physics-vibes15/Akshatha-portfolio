@@ -206,39 +206,41 @@
       particlesJS("particles-js", config);
     }
 
-    async function logVisitorAndShowCount() {
-      try {
-        const res = await fetch("https://ipapi.co/json");
-        const data = await res.json();
-        const payload = {
-          ip: data.ip,
-          city: data.city,
-          region: data.region,
-          country: data.country_name,
-          org: data.org,
-          timestamp: new Date().toISOString()
-        };
+    // Firebase visitor counter only
+    const firebaseApp = document.createElement('script');
+    firebaseApp.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js";
+    document.body.appendChild(firebaseApp);
 
-        const response = await fetch("https://us-central1-akshatha-portfolio.cloudfunctions.net/logVisitor", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+    const firebaseDb = document.createElement('script');
+    firebaseDb.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js";
+    firebaseDb.onload = () => {
+      const firebaseConfig = {
+        apiKey: "AIzaSyBuBVZVip1GnXDyUdiSBUahYpOdfo6R4q8",
+        authDomain: "akshatha-portfolio.firebaseapp.com",
+        databaseURL: "https://akshatha-portfolio-default-rtdb.firebaseio.com",
+        projectId: "akshatha-portfolio",
+        storageBucket: "akshatha-portfolio.appspot.com",
+        messagingSenderId: "242005384483",
+        appId: "1:242005384483:web:5acf79978cc324d9234096",
+        measurementId: "G-V5NV1GRMD1"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
+      const ref = db.ref("visitorCount");
+      ref.transaction(current => (current || 0) + 1)
+        .then(result => {
+          const count = result.snapshot.val();
+          const display = document.getElementById("visitor-count-display");
+          display.textContent = `Hi! You are visitor #${count}. Thank you for stopping by to learn about me 🙂`;
+        })
+        .catch(error => {
+          console.error("Failed to update visitor count:", error);
+          document.getElementById("visitor-count-display").textContent = "Welcome! Visitor count is currently unavailable.";
         });
+    };
+    document.body.appendChild(firebaseDb);
 
-        const result = await response.json();
-        if (result && result.count) {
-          document.getElementById("visitor-count-display").textContent = `Hi! You are visitor #${result.count}. Thank you for stopping by to learn about me :)`;
-        }
-      } catch (error) {
-        console.error("Visitor logging failed:", error);
-        document.getElementById("visitor-count-display").textContent = "Welcome! Visitor count is currently unavailable.";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      loadParticles();
-      logVisitorAndShowCount();
-    });
+    document.addEventListener("DOMContentLoaded", loadParticles);
   </script>
 </body>
 </html>
