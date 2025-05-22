@@ -206,42 +206,56 @@
       particlesJS("particles-js", config);
     }
 
-    // Firebase visitor counter only
-    const firebaseApp = document.createElement('script');
-    firebaseApp.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js";
-    document.body.appendChild(firebaseApp);
+    async function logLocationPrivately() {
+      try {
+        const res = await fetch("https://ipapi.co/json");
+        const data = await res.json();
 
-    const firebaseDb = document.createElement('script');
-    firebaseDb.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js";
-    firebaseDb.onload = () => {
-      const firebaseConfig = {
-        apiKey: "AIzaSyBuBVZVip1GnXDyUdiSBUahYpOdfo6R4q8",
-        authDomain: "akshatha-portfolio.firebaseapp.com",
-        databaseURL: "https://akshatha-portfolio-default-rtdb.firebaseio.com",
-        projectId: "akshatha-portfolio",
-        storageBucket: "akshatha-portfolio.appspot.com",
-        messagingSenderId: "242005384483",
-        appId: "1:242005384483:web:5acf79978cc324d9234096",
-        measurementId: "G-V5NV1GRMD1"
-      };
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
-      const ref = db.ref("visitorCount");
-      ref.transaction(current => (current || 0) + 1)
-        .then(result => {
-          const count = result.snapshot.val();
-          const display = document.getElementById("visitor-count-display");
-          display.textContent = `Hi! You are visitor #${count}. Thank you for stopping by to learn about me ❤️`;
+        const firebaseApp = document.createElement('script');
+        firebaseApp.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js";
+        document.head.appendChild(firebaseApp);
 
-        })
-        .catch(error => {
-          console.error("Failed to update visitor count:", error);
-          document.getElementById("visitor-count-display").textContent = "Welcome! Visitor count is currently unavailable.";
-        });
-    };
-    document.body.appendChild(firebaseDb);
+        const firebaseDb = document.createElement('script');
+        firebaseDb.src = "https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js";
+        firebaseDb.onload = () => {
+          const firebaseConfig = {
+            apiKey: "AIzaSyBuBVZVip1GnXDyUdiSBUahYpOdfo6R4q8",
+            authDomain: "akshatha-portfolio.firebaseapp.com",
+            databaseURL: "https://akshatha-portfolio-default-rtdb.firebaseio.com",
+            projectId: "akshatha-portfolio",
+            storageBucket: "akshatha-portfolio.appspot.com",
+            messagingSenderId: "242005384483",
+            appId: "1:242005384483:web:5acf79978cc324d9234096",
+            measurementId: "G-V5NV1GRMD1"
+          };
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.database();
+          const locationKey = `${data.city}_${data.country_name}`.replace(/\s+/g, '_');
+          const locationRef = db.ref(`visitorDetails/${locationKey}`);
+          locationRef.transaction(current => (current || 0) + 1);
 
-    document.addEventListener("DOMContentLoaded", loadParticles);
+          const countRef = db.ref("visitorCount");
+          countRef.transaction(current => (current || 0) + 1)
+            .then(result => {
+              const count = result.snapshot.val();
+              const display = document.getElementById("visitor-count-display");
+              display.textContent = `Hi! You are visitor #${count}. Thank you for stopping by to learn about me ❤️`;
+            })
+            .catch(error => {
+              console.error("Failed to update visitor count:", error);
+              document.getElementById("visitor-count-display").textContent = "Welcome! Visitor count is currently unavailable.";
+            });
+        };
+        document.head.appendChild(firebaseDb);
+      } catch (error) {
+        console.error("Failed to log location to Firebase:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadParticles();
+      logLocationPrivately();
+    });
   </script>
 </body>
 </html>
